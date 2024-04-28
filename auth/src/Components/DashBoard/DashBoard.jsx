@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './DashBoard.css'
 
+import axios from 'axios'; 
+
 class DashBoard extends Component {
     constructor(props) {
         super(props);
@@ -43,6 +45,39 @@ class DashBoard extends Component {
 
     handleBookAdd = (event) => {
         event.preventDefault();
+        console.log("Submit button pressed");
+        //const url = " http://127.0.0.1:5000/books";
+
+        //const { bookgenre, booktitle, bookauthor, bookcondition } = this.state;
+
+        /*if (bookgenre === "Test" && booktitle === "Test@123" && bookauthor === "Test@123" && ) {
+            this.setState({ errorMessage: "Book added" });
+        } else {
+            this.setState({ errorMessage: "Failure" });
+        }
+        axios.post('http://127.0.0.1:5000/books', {
+            "Title": "Book3",
+            "Author": "Author22",
+            "Genre":"History",
+            "Condition":"good",
+            "UserId":1
+        })*/
+        //console.log(event.target.elements.booktitle.value);
+        axios.post('http://127.0.0.1:5000/books', {
+            "Title": event.target.elements.booktitle.value, 
+            "Author": event.target.elements.bookauthor.value,
+            "Genre": event.target.elements.bookgenre.value,
+            "Condition": event.target.elements.bookcondition.value,
+            "UserId":1
+        })
+        .then(response => {
+            // Handle successful response if needed
+            console.log('Data sent successfully');
+        })
+        .catch(error => {
+            // Handle error
+            console.error('Error sending data:', error);
+        });
     }
     handleSearchSubmit = (event) => {
         event.preventDefault();
@@ -87,16 +122,7 @@ class DashBoard extends Component {
                             value="ABC123"
                         />
                         <br/>
-                        <label>User Id :</label>
-                        <input
-                            style={{ border: 'none' }}
-                            type="text"
-                            id="userid"
-                            name="userid"
-                            value="1"
-                        />
-                        <br/>
-                        <label>Book Title :</label>
+                        <label>Book Name :</label>
                         <input
                            style={{ border: 'none' }}
                             type="text"
@@ -114,16 +140,70 @@ class DashBoard extends Component {
                             name="listauthor"
                             value="Charles Dicken"
                         />
-                                                <br/>
-                        <label>Genre :</label>
+                    </div> 
+                </form>
+                <form id="booklist-form" style={{ border: '1px solid black', borderRadius: '5px', marginBottom: '10px', padding: '5px' }}>
+                    <div>
+                        <label>Book Id :</label>
                         <input
                             style={{ border: 'none' }}
                             type="text"
-                            id="listgenre"
-                            name="listgenre"
-                            value="Fiction"
+                            id="listid"
+                            name="listid"
+                            value="ABC123"
                         />
-                    </div> 
+                        <br/>
+                        <label>Book Name :</label>
+                        <input
+                           style={{ border: 'none' }}
+                            type="text"
+                            id="listname"
+                            name="listname"
+                            value="A Christmas Carol"
+        
+                        />
+                        <br/>
+                        <label>Book Author :</label>
+                        <input
+                        style={{ border: 'none' }}
+                            type="text"
+                            id="listauthor"
+                            name="listauthor"
+                            value="Charles Dicken"
+                        />
+                    </div>
+                </form>
+                <form id="booklist-form" style={{ border: '1px solid black', borderRadius: '5px', marginBottom: '10px', padding: '5px' }}>
+                    <div>
+                        <label>Book Id :</label>
+                        <input
+                            style={{ border: 'none' }}
+                            type="text"
+                            id="listid"
+                            name="listid"
+                            value="ABC123"
+                        />
+                        <br/>
+                        <label>Book Name :</label>
+                        <input
+                           style={{ border: 'none' }}
+                            type="text"
+                            id="listname"
+                            name="listname"
+                            value="A Christmas Carol"
+        
+                        />
+                        <br/>
+                        <label>Book Author :</label>
+                        <input
+                        style={{ border: 'none' }}
+                            type="text"
+                            id="listauthor"
+                            name="listauthor"
+                            value="Charles Dicken"
+                        />
+                    </div>
+                    
                 </form>
             </div>
             <div className="dashboard">
